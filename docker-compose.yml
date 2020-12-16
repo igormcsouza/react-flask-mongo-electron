@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+    backend:
+        build: 
+            context: ./backend/
+            dockerfile: Dockerfile
+        command: flask run
+        env_file: 
+            - ./backend/.env
+        volumes: 
+            - ./backend/:/app/
+        ports: 
+            - 5000:5000
+
+    frontend:
+        build: 
+            context: ./frontend/
+            dockerfile: Dockerfile
+        command: npm start
+        env_file: 
+            - ./frontend/.env
+        volumes: 
+            - ./frontend/:/app/
+        ports: 
+            - 8000:8000
